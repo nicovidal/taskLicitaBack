@@ -74,4 +74,43 @@ const updateTask=async(req,res=response)=>{
 }
 
 
-module.exports={createTask,getTask,updateTask}
+
+const deleteTask=async(req,res=response)=>{
+
+
+    const taskId=req.params.id;
+
+    try{
+
+        const task=await Task.findById(taskId);
+
+        if(!task){
+            return res.status(404).json({
+                ok:false,
+                msg:'Task not found'
+            })
+        }
+
+
+        await Task.findByIdAndDelete(taskId);
+
+        res.json({
+            ok:true,
+        })
+
+    }catch(error){
+        console.log(error)
+        res.status(500).json({
+            ok:false,
+            msg:'Error server'
+        })
+
+    }
+
+
+
+
+}
+
+
+module.exports={createTask,getTask,updateTask,deleteTask}
