@@ -12,4 +12,12 @@ app.listen(process.env.PORT,()=>{
     console.log(`Servidor en puerto ${process.env.PORT}`)
 })
 
+
+//Lectura y parseo del body
+app.use(express.json())
+
 app.use(express.static('public'))
+
+
+//routes
+app.use('/api/tasks',require('./routes/task'))

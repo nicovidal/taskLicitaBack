@@ -1,17 +1,18 @@
-const mongoose=require('mongoose');
-const dbConnection=async()=>{
-    try{
+const {Router}=require("express");
+const { getTask, createTask } = require("../controllers/task");
+const router=Router();
 
-        await mongoose.connect(process.env.DB_CONECTION);
 
-        console.log('db online')
 
-    }catch(error){
-        console.log(error)
-        throw new Error('Error al iniciar bd')
-    }
-}
 
-module.exports={
-    dbConnection
-}
+//GetTasks
+router.get('/',getTask)
+
+
+//Create new Task
+router.post('/',createTask)
+
+
+
+
+module.exports=router;
