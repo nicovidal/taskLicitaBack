@@ -1,5 +1,5 @@
 const {Router}=require("express");
-const { getTask, createTask, updateTask, deleteTask } = require("../controllers/task");
+const { getTask, createTask, updateTask, deleteTask, deleteMultipleTasks } = require("../controllers/task");
 const { validate } = require("../middlewares/validate");
 const {check}=require('express-validator')
 const router=Router();
@@ -25,7 +25,7 @@ router.put('/:id',updateTask)
 //delete task
 router.delete('/:id',deleteTask)
 
-
+router.post("/delete-multiple", deleteMultipleTasks);
 
 
 
