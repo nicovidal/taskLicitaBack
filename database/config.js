@@ -1,18 +1,16 @@
-const mongoose=require('mongoose');
+const mongoose = require("mongoose");
 
-const dbConnection=async()=>{
-    try{
+const dbConnection = async () => {
+  try {
+    await mongoose.connect(process.env.DB_CONECTION);
 
-        await mongoose.connect(process.env.DB_CONECTION);
+    console.log("db pulentamente online");
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error al iniciar bd");
+  }
+};
 
-        console.log('db pulentamente online')
-
-    }catch(error){
-        console.log(error)
-        throw new Error('Error al iniciar bd')
-    }
-}
-
-module.exports={
-    dbConnection
-}
+module.exports = {
+  dbConnection,
+};

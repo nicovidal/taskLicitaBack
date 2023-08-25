@@ -14,7 +14,7 @@ app.listen(process.env.PORT, () => {
 
 app.use(cors());
 
-//Lectura y parseo del body
+//parse bod
 app.use(express.json());
 
 app.use(express.static("public"));

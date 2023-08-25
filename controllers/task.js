@@ -1,7 +1,6 @@
 const { response } = require("express");
 const Task = require("../models/Task");
 
-
 const createTask = async (req, res = response) => {
   const task = new Task(req.body);
 
@@ -89,18 +88,15 @@ const deleteTask = async (req, res = response) => {
   }
 };
 
-
 const deleteMultipleTasks = async (req, res = response) => {
-  const taskIds = req.body.taskIds;
+  const taskIds = req.body;
 
   try {
-
-
     const tasks = await Task.find({ _id: { $in: taskIds } });
     if (tasks.length === 0) {
       return res.status(404).json({
         ok: false,
-        msg: "Tasks not found",
+        msg: "Task not found",
       });
     }
 
@@ -123,6 +119,5 @@ module.exports = {
   getTask,
   updateTask,
   deleteTask,
-  deleteMultipleTasks
+  deleteMultipleTasks,
 };
-
